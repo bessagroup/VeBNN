@@ -2,43 +2,70 @@
   <a href=""><img alt="logo" src="https://avatars.githubusercontent.com/u/64279108?s=200&v=4" width="30%"></a>
 </p>
 
-# VeBNN
+
+
+# What is VeBNN?
 
 | [**GitHub**](https://github.com/JiaxiangYi96/VeBNN)
-|
-
-a package
-
-**First publication:** December 8, 2025
-
-***
+| [**arXiv**](https://arxiv.org/abs/2505.02743) |
 
 ## Summary
 
-<!-- Write here a longer description of the package, what it does, and why it is useful. -->
+`VeBNN` provides the implementation for the paper [Cooperative variance estimation and Bayesian neural networks disentangle aleatoric and epistemic uncertainties](https://arxiv.org/abs/2505.02743).
+
+
 
 ## Statement of need
 
-<!-- Write here the statement of need for this package -->
+Real-world data contains **aleatoric uncertainty** — irreducible noise caused by imperfect measurements or incomplete knowledge of the data-generating process. Mean variance estimation (MVE) networks can learn this type of uncertainty but require ad-hoc regularization strategies to avoid overfitting and are unable to predict epistemic uncertainty (model uncertainty). Conversely, Bayesian neural networks predict epistemic uncertainty but are notoriously difficult to train due to the approximate nature of Bayesian inference. VeBNN introduces a **cooperative training strategy** between:
 
-## Authorship
+- a **Gamma variance network** (aleatoric uncertainty)  
+- a **Bayesian neural network** (epistemic uncertainty)  
 
-**Authors**:
-- Jiaxiang Yi ([J.Yi@tudelft.nl](mailto:J.Yi@tudelft.nl))
+They iteratively refine each other, resulting in:
 
-**Authors afilliation:**
-- Delft University of Technology (Bessa Research Group)
+- disentangled **aleatoric & epistemic** uncertainty  
+- improved predictive accuracy  
+- stable training without ad-hoc tricks  
 
-**Maintainer:**
-- Jiaxiang Yi ([J.Yi@tudelft.nl](mailto:J.Yi@tudelft.nl))
+> A visualization of the VeBNN training procedure is given as follows:
 
-**Maintainer afilliation:**
-- Delft University of Technology (Bessa Research Group)
+
+<div align="center">
+    <img src="docs/source/logo/illustration.png" alt="VeBNN" width="800"/>
+</div>
+
+---
+
+**Authorship**:
+- This repo is developed [Jiaxiang Yi](https://scholar.google.com/citations?user=LM6O83QAAAAJ&hl=en), a PhD candidate of Delft University of Technology, based on his research context.
 
 
 ## Getting started
 
-<!-- Write here how users should get started with this package -->
+**Installation**
+
+(1). git clone the repo to your local machine
+
+```
+https://github.com/bessagroup/VeBNN.git
+```
+
+(2). go to the local folder where you cloned the repo, and pip install it with editable mode
+
+```
+pip install --editable .
+```
+
+
+(3). install requirement 
+```
+pip install -r requirement.txt
+```
+
+**Illustrative example**
+
+
 
 ## Community Support
 
