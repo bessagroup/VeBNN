@@ -431,7 +431,8 @@ class SGMCMCTrainer:
         self.mean_nets = [] 
         self.log_likelihood = []
         self.log_prior = []
-
+        # set the mean network to training mode
+        self.mean_net.train()
         for epoch in range(num_epochs):
             nll_loss_collection = 0.0
             neg_log_prior_collection = 0.0
