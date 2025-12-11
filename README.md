@@ -20,14 +20,14 @@
 
 Real-world data contains **aleatoric uncertainty** — irreducible noise caused by imperfect measurements or incomplete knowledge of the data-generating process. Mean variance estimation (MVE) networks can learn this type of uncertainty but require ad-hoc regularization strategies to avoid overfitting and are unable to predict epistemic uncertainty (model uncertainty). Conversely, Bayesian neural networks predict epistemic uncertainty but are notoriously difficult to train due to the approximate nature of Bayesian inference. VeBNN introduces a **cooperative training strategy** between:
 
-- a **Gamma variance network** (aleatoric uncertainty)  
-- a **Bayesian neural network** (epistemic uncertainty)  
+- a **Variance estimation network** (aleatoric uncertainty)
+- a **Bayesian neural network** (epistemic uncertainty)
 
 They iteratively refine each other, resulting in:
 
-- disentangled **aleatoric & epistemic** uncertainty  
-- improved predictive accuracy  
-- stable training without ad-hoc tricks  
+- disentangled **aleatoric & epistemic** uncertainty
+- improved predictive accuracy
+- stable training without ad-hoc tricks
 
 > A visualization of the VeBNN training procedure is given as follows:
 
@@ -59,7 +59,7 @@ pip install --editable .
 ```
 
 
-(3). install requirement 
+(3). install requirement
 ```
 pip install -r requirement.txt
 ```
