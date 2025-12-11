@@ -112,7 +112,7 @@ class SGMCMCTrainer:
                 y=y_train,
                 init_config=init_config,
             )
-    
+
         # begin the second and third training
         mar_likelihoods = []
         # adding an array for recording the results
@@ -287,7 +287,7 @@ class SGMCMCTrainer:
                 loss.backward()
                 optimizer.step()
 
-                train_loss_epoch += loss.detach().item() * xb.size(0)  
+                train_loss_epoch += loss.detach().item() * xb.size(0)
 
             train_loss_epoch /= train_size
             self.warm_up_train_loss.append(train_loss_epoch)
@@ -300,10 +300,11 @@ class SGMCMCTrainer:
                         xb = xb.to(self.device)
                         yb = yb.to(self.device)
                         y_pred = map_net(xb)
-                        val_loss_epoch += data_criterion(y_pred, yb).item() * xb.size(0)
+                        loss_val = data_criterion(y_pred, yb)
+                        val_loss_epoch += loss_val.item() * xb.size(0)
                 val_loss_epoch /= val_size
             else:
-                val_loss_epoch = train_loss_epoch 
+                val_loss_epoch = train_loss_epoch
             self.warm_up_val_loss.append(val_loss_epoch)
             if init_config["verbose"] and (
                 (epoch + 1) % init_config["print_iter"] == 0 or epoch == 0
@@ -320,7 +321,7 @@ class SGMCMCTrainer:
                 best_state_dict = copy.deepcopy(map_net.state_dict())
 
         # load the best model
-        map_net.load_state_dict(best_state_dict)      
+        map_net.load_state_dict(best_state_dict)
 
         return map_net, best_epoch, best_val_loss
 
@@ -419,14 +420,15 @@ class SGMCMCTrainer:
         print_iter: int = 10,
     ) -> None:
 
-        if batch_size is None: batch_size = x.size(0)
+        if batch_size is None:
+            batch_size = x.size(0)
 
         dataset = TensorDataset(x, y, var_best)
         dataloader = DataLoader(dataset,
                                 batch_size=batch_size,
                                 shuffle=True)
         # initialize the storage for posterior samples
-        self.mean_nets = [] 
+        self.mean_nets = []
         self.log_likelihood = []
         self.log_prior = []
         # set the mean network to training mode
@@ -443,10 +445,10 @@ class SGMCMCTrainer:
                 )
                 self.sampler.zero_grad()
                 pred = self.mean_net(X_batch)
-                nll_loss = NLLLoss()(pred=pred, 
+                nll_loss = NLLLoss()(pred=pred,
                                      pred_var=var_batch,
                                      real=y_batch,
-                                      num_scale=len(dataloader))
+                                     num_scale=len(dataloader))
                 prior_loss = self.mean_net.neg_log_prior()
                 loss = nll_loss + prior_loss
                 loss.backward()
@@ -500,7 +502,8 @@ class SGMCMCTrainer:
         self.train_loss_collection = torch.zeros(num_epochs)
         self.nlog_mglks = torch.zeros(num_epochs)
         # count the number of epochs with no improvement
-        if early_stopping: no_improvement = 0
+        if early_stopping:
+            no_improvement = 0
 
         # begin the training process
         for epoch in range(num_epochs):
@@ -508,7 +511,8 @@ class SGMCMCTrainer:
             self.var_net.train()
             log_mglks_batch = 0.0
             num_sample_count = 0
-            for i, (x_batch, residuals_batch,y_batch ) in enumerate(dataloader):
+            for i, (x_batch, residuals_batch, y_batch) in enumerate(
+                    dataloader):
                 x_batch = x_batch.to(self.device)
                 residuals_batch = residuals_batch.to(self.device)
                 y_batch = y_batch.to(self.device)
@@ -548,7 +552,8 @@ class SGMCMCTrainer:
                     f"Epoch/Total: {epoch}/{num_epochs}, "
                     f"Gamma NLL: {loss.item():.3e}, "
                     f"neg log prior: {prior_loss.item():.3e}, "
-                    f"log marginal likelihood: {log_mglks_batch/x_train.shape[0]:.3e}"
+                    f"log marginal likelihood: "
+                    f"{log_mglks_batch/x_train.shape[0]:.3e}"
                 )
             #  check early stopping
             if iteration > 0:
@@ -560,7 +565,8 @@ class SGMCMCTrainer:
                     else:
                         curr = float(self.nlog_mglks[epoch])
                         rel_improvement = 1.0
-                    if rel_improvement > early_stopping_tol and curr < min_loss:
+                    if (rel_improvement > early_stopping_tol and
+                            curr < min_loss):
                         no_improvement = 0
                         min_loss = curr
                         self.best_var_epoch = epoch
@@ -614,7 +620,7 @@ class SGMCMCTrainer:
             # make sure the ppd responses are available
             if ppd_responses is None:
                 raise ValueError("PPD responses are not available")
-            
+
             # Compute negative log-likelihood (NLL) for all samples in parallel
             # Shape: (num_samples, batch_size, output_dim)
             residuals = (ppd_responses - y.unsqueeze(0))
@@ -684,7 +690,7 @@ class SGMCMCTrainer:
             temp_model.to(self.device)
             temp_model.eval()
             with torch.no_grad():
-                y_pred = temp_model.forward( x.to(self.device))
+                y_pred = temp_model.forward(x.to(self.device))
                 responses.append(y_pred)
 
         # Stack the predictions and calculate the mean and variance

@@ -72,7 +72,6 @@ class NLLLoss(Module):
             neg_lld = neg_lld.mean()
         else:
             raise ValueError("Undefined reduction type")
-        
         # divide by the number of outputs
         neg_lld = neg_lld*num_scale
 

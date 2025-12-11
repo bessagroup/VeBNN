@@ -31,7 +31,7 @@ class MeanNet(nn.Module):
     """
 
     def __init__(self,
-                 net: nn.Module, 
+                 net: nn.Module,
                  prior_mu: float,
                  prior_sigma: float) -> None:
         super(MeanNet, self).__init__()
@@ -68,7 +68,7 @@ class MeanNet(nn.Module):
         self.net.forward(x)
 
         return self.net.forward(x)
-    
+
     def neg_log_prior(self) -> torch.Tensor:
         """
         Compute the log prior of all parameters of the backbone network.
@@ -94,4 +94,3 @@ class MeanNet(nn.Module):
             log_prior += dist.log_prob(param).sum()
 
         return -log_prior
-

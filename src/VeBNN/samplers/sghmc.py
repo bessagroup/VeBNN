@@ -100,12 +100,6 @@ class SGHMC(Optimizer):
 
                 state = self.state[parameter]
 
-                # if len(parameter.shape) == 1 and parameter.shape[0] == 1:
-                #     # optimize aleatoric noise without adding nosie
-                #     parameter.data.add_(
-                #         parameter.grad.data, alpha=-group["lr"])
-                # else:
-                # use SGHMC to optimize parameters of NN
                 if len(state) == 0:
                     state["iteration"] = 0
                     state["momentum"] = torch.randn(
@@ -132,5 +126,5 @@ class SGHMC(Optimizer):
                 # update the momentum and parameters according to algorithm
                 parameter.data.add_(lr * mdecay * momentum)
                 momentum.add_(-lr * gradient - mdecay *
-                                lr * momentum + sample_t)
+                              lr * momentum + sample_t)
         return loss

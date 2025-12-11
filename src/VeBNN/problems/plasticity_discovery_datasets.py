@@ -192,10 +192,10 @@ class PlasticityLaw:
             self.strain_ground_truth_normalized = (
                 self.strain_ground_truth - self.strain_mean) / self.strain_std
             self.stress_ground_truth_mean_normalized = (
-                self.stress_ground_truth_mean - self.stress_mean) / self.stress_std
+                (self.stress_ground_truth_mean - self.stress_mean) /
+                self.stress_std)
             self.stress_ground_truth_std_normalized = (
                 self.stress_ground_truth_std) / self.stress_std
-            
 
     def plot_training_data(self,
                            index: int,

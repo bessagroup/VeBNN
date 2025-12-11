@@ -49,7 +49,7 @@ class GammaVarNet(nn.Module):
                  prior_mu: float = 0.0,
                  prior_sigma: float = 1.0) -> None:
         super().__init__()
-        
+
         self.net = net
         # prior parameters for the neural network parameters
         self.prior_mu = prior_mu
@@ -67,10 +67,10 @@ class GammaVarNet(nn.Module):
 
         # apply softplus to ensure positivity
         alpha = F.softplus(alpha)
-        beta = F.softplus(beta) 
+        beta = F.softplus(beta)
 
         return alpha, beta
-        
+
 
     def neg_log_prior(self) -> torch.Tensor:
         """
@@ -97,6 +97,6 @@ class GammaVarNet(nn.Module):
             log_prior += dist.log_prob(param).sum()
 
         return -log_prior
-    
+
 
 # ------------------ End of Reference Python Module ------------------------- #
