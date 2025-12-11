@@ -8,6 +8,7 @@
 
 | [**GitHub**](https://github.com/JiaxiangYi96/VeBNN)
 | [**arXiv**](https://arxiv.org/abs/2505.02743) |
+[**Documentation**](http://127.0.0.1:8000/en/latest)|
 
 ## Summary
 
@@ -32,7 +33,7 @@ They iteratively refine each other, resulting in:
 
 
 <div align="center">
-    <img src="docs/source/logo/illustration.png" alt="VeBNN" width="800"/>
+    <img src="docs/logo/illustration.png" alt="VeBNN" width="800"/>
 </div>
 
 ---
@@ -62,8 +63,6 @@ pip install --editable .
 ```
 pip install -r requirement.txt
 ```
-
-**Illustrative example**
 
 
 
