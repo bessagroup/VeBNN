@@ -338,8 +338,6 @@ class SGMCMCTrainer:
             name of the optimizer, by default "Adam"
         lr : float, optional
             learning rate, by default 1e-3
-        weight_decay : float, optional
-            weight decay, by default 1e-4
 
         Raises
         ------

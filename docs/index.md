@@ -1,8 +1,10 @@
+<!-- <p align="center">
+  <a href=""><img alt="logo" src="https://avatars.githubusercontent.com/u/64279108?s=200&v=4" width="30%"></a>
+</p> -->
+
 <p align="center">
-  <a href=""><img alt="logo" src="docs/logo/logo.png" width="30%"></a>
+  <a href=""><img alt="logo" src="logo/logo.png" width="30%"></a>
 </p>
-
-
 
 # What is VeBNN?
 
@@ -32,7 +34,7 @@ They iteratively refine each other, resulting in:
 
 
 <div align="center">
-    <img src="docs/source/logo/illustration.png" alt="VeBNN" width="800"/>
+    <img src="logo/illustration.png" alt="VeBNN" width="800"/>
 </div>
 
 ---
@@ -41,27 +43,7 @@ They iteratively refine each other, resulting in:
 - This repo is developed [Jiaxiang Yi](https://scholar.google.com/citations?user=LM6O83QAAAAJ&hl=en), a PhD candidate of Delft University of Technology, based on his research context.
 
 
-## Getting started
 
-**Installation**
-
-(1). git clone the repo to your local machine
-
-```
-https://github.com/bessagroup/VeBNN.git
-```
-
-(2). go to the local folder where you cloned the repo, and pip install it with editable mode
-
-```
-pip install --editable .
-```
-
-
-(3). install requirement 
-```
-pip install -r requirement.txt
-```
 
 **Illustrative example**
 
