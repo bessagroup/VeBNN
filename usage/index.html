@@ -1,0 +1,1939 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A repo for Variance estimation Bayesian Neural Networks">
+      
+      
+        <meta name="author" content="Jiaxiang Yi">
+      
+      
+        <link rel="canonical" href="https://VeBNN.readthedocs.io/en/latest/usage/">
+      
+      
+        <link rel="prev" href="../installation/">
+      
+      
+        <link rel="next" href="../api/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Usage - VeBNN</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../_static/custom_css.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#usage" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="VeBNN" class="md-header__button md-logo" aria-label="VeBNN" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VeBNN
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Usage
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/bessagroup/VeBNN" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bessagroup/VeBNN
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VeBNN" class="md-nav__button md-logo" aria-label="VeBNN" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VeBNN
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/bessagroup/VeBNN" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bessagroup/VeBNN
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-dataset-creation-and-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Dataset creation and loading
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Dataset creation and loading">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-create-numerical-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1. Create numerical problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-plasticity-law-discovery-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2. Plasticity Law Discovery Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-vebnn-training-with-one-dimensional-illustrative-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. VeBNN training with one-dimensional illustrative example
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. VeBNN training with one-dimensional illustrative example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-create-the-mlp-architecture-and-assemble-it-to-mean-and-variance-neural-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1. Create the MLP architecture and assemble it to mean and variance neural networks.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-assemble-the-sgmcmctrainer-a-implementation-of-vebnn-with-sgmcmc-inference-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2. Assemble the SGMCMCTrainer, a implementation of VeBNN with SGMCMC inference methods.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-get-predictions-of-the-vebnn-with-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3. Get predictions of the VeBNN with MLP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-vebnn-training-with-plasticity-law-discovery-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. VeBNN training with plasticity law discovery dataset
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. VeBNN training with plasticity law discovery dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-get-training-and-testing-samples-from-plasticitylaw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Get training and testing samples from PlasticityLaw
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-create-gru-architecture-with-torch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Create GRU architecture with torch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-assemble-the-sgmcmctrainer-for-plasticity-law-discovery-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. Assemble the SGMCMCTrainer for plasticity law discovery dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-get-predictions-for-the-plasticity-law-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4. Get predictions for the plasticity law dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BSD 3-Clause License
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">¤</a></h1>
+<p>This notebook provides essential guidance on how to use the core functionality of the <code>VeBNN</code> repo.</p>
+<h2 id="1-dataset-creation-and-loading">1. Dataset creation and loading<a class="headerlink" href="#1-dataset-creation-and-loading" title="Permanent link">¤</a></h2>
+<p>Dataset is the only input required by this packages, this notebook shows how to create Dataset that matches data flow of the packages. </p>
+<ul>
+<li>However create numerical problem</li>
+<li>Load the Plasticity law dataset</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># import packages</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch</span><span class="w"> </span><span class="kn">import</span> <span class="n">nn</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="kn">import</span> <span class="n">ScalarFormatter</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="11-create-numerical-problem">1.1. Create numerical problem<a class="headerlink" href="#11-create-numerical-problem" title="Permanent link">¤</a></h3>
+<p>Numerical function is one of the fast way to generate data to test a machine learning model. With this package, we provide this example to show how to set a numerical problem and how to prescribe noise accordingly.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">Xsin</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">noise_type</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span> <span class="s2">&quot;homo&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Xsin function with noise</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x : torch.Tensor</span>
+<span class="sd">        input tensor of the Xsin function</span>
+<span class="sd">    train : bool, optional</span>
+<span class="sd">        generating training or testing data, by default False</span>
+<span class="sd">    noise_type : str, optional</span>
+<span class="sd">        define the noise, by default &quot;homo&quot;</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Responses</span>
+<span class="sd">        responses of the input data points</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">train</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">noise_type</span> <span class="o">==</span> <span class="s2">&quot;heter&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.3</span> <span class="o">+</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.3</span>
+        <span class="k">elif</span> <span class="n">noise_type</span> <span class="o">==</span> <span class="s2">&quot;homo&quot;</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># generate data based on the defined function</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">responses</span> <span class="o">=</span> <span class="n">Xsin</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">noise_type</span><span class="o">=</span><span class="s2">&quot;heter&quot;</span><span class="p">)</span>
+<span class="n">plot_samples</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">1400</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ground_truth</span> <span class="o">=</span> <span class="n">Xsin</span><span class="p">(</span><span class="n">plot_samples</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+
+<span class="c1"># plot the Xsin function</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">responses</span><span class="p">,</span> <span class="s2">&quot;m+&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Training Data&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">plot_samples</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">,</span>  <span class="s2">&quot;b--&quot;</span><span class="p">,</span>
+               <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Ground Truth&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+        <span class="n">plot_samples</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span>
+        <span class="p">(</span><span class="n">ground_truth</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">plot_samples</span><span class="p">)</span><span class="o">*</span><span class="mf">0.3</span> <span class="o">+</span> <span class="mf">0.3</span><span class="p">))</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span>
+        <span class="p">(</span><span class="n">ground_truth</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">plot_samples</span><span class="p">)</span><span class="o">*</span><span class="mf">0.3</span> <span class="o">+</span> <span class="mf">0.3</span><span class="p">))</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span>
+        <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
+        <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;None&quot;</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Ground Truth $\pm 2\sigma$&quot;</span><span class="p">,</span>
+    <span class="p">)</span>   
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="img" src="../_data/09a8c7a5883948f99739e650fa493995.png" /></p>
+<p>To this end, one can develop their own numerical case as following the same format. </p>
+<h3 id="12-plasticity-law-discovery-dataset">1.2. Plasticity Law Discovery Dataset<a class="headerlink" href="#12-plasticity-law-discovery-dataset" title="Permanent link">¤</a></h3>
+<p>The fundamental mechanical law of materials is called a <strong>constitutive law</strong>. It relates average material <strong>deformations</strong> to average material <strong>stresses</strong> at any point in a structure. Constitutive laws can model different physics behaviors, such as <strong>elasticity</strong>, <strong>hyperelasticity</strong>, <strong>plasticity</strong>, and <strong>damage</strong>. In this dataset, we focus on generating datasets for <strong>plastically deforming composite materials</strong>, following prior work about Cooperative Data-Driven Modeling (<a href="https://www.sciencedirect.com/science/article/abs/pii/S004578252300556X">CDDM</a>) . Without loss of generality, the constitutive law of such <strong>path-dependent materials</strong> can be written as:</p>
+<div class="arithmatex">\[
+\mathbf{y} = f(\mathbf{x}, \dot{\mathbf{x}}, \tau, \dot{\tau}, \mathbf{h})
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\mathbf{y}\)</span> — stress  </li>
+<li><span class="arithmatex">\(\mathbf{x}\)</span> — strain  </li>
+<li><span class="arithmatex">\(\tau\)</span> — temperature  </li>
+<li><span class="arithmatex">\(\mathbf{h}\)</span> — internal state variables  </li>
+</ul>
+<p>These constitutive responses are predicted by <strong>micro-scale FEM simulations</strong> of material domains called <strong>stochastic volume elements (SVEs)</strong>. </p>
+<p><img alt="&quot;sve_contour" src="../logo/sve_contour.png" /></p>
+<!-- <div align="center">
+    <img src="./logo/sve_contour.png" alt="sve_contour" width="800"/>
+</div> -->
+
+<p>Each SVE serves as a basic material simulation unit. Many factors introduce uncertainty in the data generation process. Here, we analyze two major sources:</p>
+<ol>
+<li><strong>SVE size</strong>  </li>
+<li><strong>Particle distribution variability</strong>  </li>
+</ol>
+<p>Randomizing the particle distribution leads the resulting stress response for the same input deformation to exhibit <strong>stochasticity (aleatoric uncertainty)</strong>, which can observed with the <code>plot_test_function</code> of the <code>PlasticityLaw</code> class.</p>
+<p>Two datasets are therefore generated from simulations according to the Table.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th><span class="arithmatex">\(v_f\)</span></th>
+<th><span class="arithmatex">\(r\)</span></th>
+<th><span class="arithmatex">\(r_{\mathrm{std}}\)</span></th>
+<th>Hardening Law</th>
+<th><span class="arithmatex">\(E_{\mathrm{fiber}}\)</span></th>
+<th>Size</th>
+<th><span class="arithmatex">\(E_{\mathrm{matrix}}\)</span></th>
+<th><span class="arithmatex">\(\nu_{\mathrm{matrix}}\)</span></th>
+<th><span class="arithmatex">\(\nu_{\mathrm{fiber}}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Material 1</td>
+<td>0.30</td>
+<td>0.003</td>
+<td>0.0</td>
+<td><span class="arithmatex">\(\sigma_{y} = 0.5 + 0.5(\bar{\epsilon})^{0.4}\)</span></td>
+<td>1</td>
+<td>0.048</td>
+<td>100</td>
+<td>0.30</td>
+<td>0.19</td>
+</tr>
+<tr>
+<td>Material 2</td>
+<td>0.30</td>
+<td>0.003</td>
+<td>0.0</td>
+<td><span class="arithmatex">\(\sigma_{y} = 0.5 + 0.5(\bar{\epsilon})^{0.4}\)</span></td>
+<td>1</td>
+<td>0.030</td>
+<td>100</td>
+<td>0.30</td>
+<td>0.19</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="c1"># import the corresponding function for Bayes datasets</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">VeBNN.problems</span><span class="w"> </span><span class="kn">import</span> <span class="n">PlasticityLaw</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># load the dataset</span>
+<span class="n">plasticity_dataset</span> <span class="o">=</span> <span class="n">PlasticityLaw</span><span class="p">(</span><span class="n">dataset_path</span><span class="o">=</span><span class="s2">&quot;plasticity_discovery/material_2_training_dataset.pickle&quot;</span><span class="p">,</span>
+                                  <span class="n">ground_truth</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                  <span class="n">ground_truth_data_path</span><span class="o">=</span><span class="s2">&quot;plasticity_discovery/material_2_testing_dataset.pickle&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># visualization of the training data for specific index</span>
+<span class="n">plasticity_dataset</span><span class="o">.</span><span class="n">plot_training_data</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="img" src="../_data/943b238979574bae88c2ef5d44cdff78.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># visualize the test data with ground truth</span>
+<span class="n">plasticity_dataset</span><span class="o">.</span><span class="n">plot_test_data</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="img" src="../_data/350345ebc6054053a5846062d5d6de0a.png" /></p>
+<h2 id="2-vebnn-training-with-one-dimensional-illustrative-example">2. VeBNN training with one-dimensional illustrative example<a class="headerlink" href="#2-vebnn-training-with-one-dimensional-illustrative-example" title="Permanent link">¤</a></h2>
+<p>When you have tabular data, then you have to resort to Multi-layer perceptron or Feed-forward neural network to handle such problems. For example, in the [illustrative example] cell, we created a dataset with input <code>samples</code> and noisy observation <code>responses</code>. In order to handle such problem, we first need to define the neural architecture, and the assemble the <code>MeanNet</code> and <code>GammaVarNet</code>. With setting up for <code>MeanNet</code> and <code>GammaVarNet</code>, we can train the <code>VeBNN</code> method with MCMC method via <code>SGMCMCTrainer</code>. </p>
+<h3 id="21-create-the-mlp-architecture-and-assemble-it-to-mean-and-variance-neural-networks">2.1. Create the MLP architecture and assemble it to mean and variance neural networks.<a class="headerlink" href="#21-create-the-mlp-architecture-and-assemble-it-to-mean-and-variance-neural-networks" title="Permanent link">¤</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># import the necessary modules for VeBNN</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">VeBNN.networks.mean_nets</span><span class="w"> </span><span class="kn">import</span> <span class="n">MeanNet</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">VeBNN.networks.variance_nets</span><span class="w"> </span><span class="kn">import</span> <span class="n">GammaVarNet</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># define the mean and variance networks</span>
+<span class="n">mean_mlp</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+        <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span>
+        <span class="n">nn</span><span class="o">.</span><span class="n">Tanh</span><span class="p">(),</span>
+        <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span>
+        <span class="n">nn</span><span class="o">.</span><span class="n">Tanh</span><span class="p">(),</span>
+        <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="p">)</span>
+<span class="n">mean_net</span> <span class="o">=</span> <span class="n">MeanNet</span><span class="p">(</span>
+    <span class="n">net</span><span class="o">=</span><span class="n">mean_mlp</span><span class="p">,</span>
+    <span class="n">prior_mu</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">prior_sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">variance_mlp</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Tanh</span><span class="p">(),</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">1</span><span class="p">),</span>  <span class="c1"># notice the output is 2 * output_dim, since we need to output both alpha and beta</span>
+<span class="p">)</span> <span class="c1"># no softplus at the end, since it is already included in GammaVarNet</span>
+<span class="n">var_net</span> <span class="o">=</span> <span class="n">GammaVarNet</span><span class="p">(</span>
+    <span class="n">net</span><span class="o">=</span><span class="n">variance_mlp</span><span class="p">,</span>
+    <span class="n">prior_mu</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">prior_sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="c1"># print the network structures</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean_net</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">var_net</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>MeanNet(
+  (net): Sequential(
+    (0): Linear(in_features=1, out_features=64, bias=True)
+    (1): Tanh()
+    (2): Linear(in_features=64, out_features=64, bias=True)
+    (3): Tanh()
+    (4): Linear(in_features=64, out_features=1, bias=True)
+  )
+)
+GammaVarNet(
+  (net): Sequential(
+    (0): Linear(in_features=1, out_features=5, bias=True)
+    (1): Tanh()
+    (2): Linear(in_features=5, out_features=2, bias=True)
+  )
+)
+</code></pre></div>
+<h3 id="22-assemble-the-sgmcmctrainer-a-implementation-of-vebnn-with-sgmcmc-inference-methods">2.2. Assemble the SGMCMCTrainer, a implementation of VeBNN with SGMCMC inference methods.<a class="headerlink" href="#22-assemble-the-sgmcmctrainer-a-implementation-of-vebnn-with-sgmcmc-inference-methods" title="Permanent link">¤</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># import the SGMCMC trainer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">VeBNN.methods.sgmcmc_trainer</span><span class="w"> </span><span class="kn">import</span> <span class="n">SGMCMCTrainer</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># ====== build trainer ======</span>
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">SGMCMCTrainer</span><span class="p">(</span>
+    <span class="n">mean_net</span><span class="o">=</span><span class="n">mean_net</span><span class="p">,</span> 
+    <span class="n">var_net</span><span class="o">=</span><span class="n">var_net</span><span class="p">,</span>
+    <span class="n">device</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">),</span> <span class="c1"># change to &quot;cuda:0&quot; if GPU is available</span>
+    <span class="n">job_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># any integer; used for temporary folder</span>
+<span class="p">)</span>
+
+<span class="c1"># ====== configs (kept small so test is fast) ======</span>
+<span class="n">init_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;loss_name&quot;</span><span class="p">:</span> <span class="s2">&quot;MSE&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;optimizer_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Adam&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">1e-3</span><span class="p">,</span>
+    <span class="s2">&quot;weight_decay&quot;</span><span class="p">:</span> <span class="mf">1e-6</span><span class="p">,</span>
+    <span class="s2">&quot;num_epochs&quot;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>      <span class="c1"># warm-up epochs</span>
+    <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="mi">64</span><span class="p">,</span>
+    <span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;print_iter&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+    <span class="s2">&quot;split_ratio&quot;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">var_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;optimizer_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Adam&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">1e-2</span><span class="p">,</span>
+    <span class="s2">&quot;num_epochs&quot;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+    <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="mi">64</span><span class="p">,</span>
+    <span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;print_iter&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+    <span class="s2">&quot;early_stopping&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;early_stopping_iter&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s2">&quot;early_stopping_tol&quot;</span><span class="p">:</span> <span class="mf">1e-4</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">sampler_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;sampler&quot;</span><span class="p">:</span> <span class="s2">&quot;pSGLD&quot;</span><span class="p">,</span>   <span class="c1"># must match your VeBNN.samplers names</span>
+    <span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">1e-3</span><span class="p">,</span>
+    <span class="s2">&quot;gamma&quot;</span><span class="p">:</span> <span class="mf">0.9999</span><span class="p">,</span>
+    <span class="s2">&quot;num_epochs&quot;</span><span class="p">:</span> <span class="mi">5000</span><span class="p">,</span>    <span class="c1"># SGMCMC epochs</span>
+    <span class="s2">&quot;mix_epochs&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>     <span class="c1"># thinning interval</span>
+    <span class="s2">&quot;burn_in_epochs&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="mi">64</span><span class="p">,</span>
+    <span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;print_iter&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># ====== run cooperative training ======</span>
+<span class="c1"># iteration controls how many outer loops (var &lt;-&gt; mean) you do.</span>
+<span class="c1"># For a quick test, iteration=2 is enough to see if everything works.</span>
+<span class="n">trainer</span><span class="o">.</span><span class="n">cooperative_train</span><span class="p">(</span>
+    <span class="n">x_train</span><span class="o">=</span><span class="n">samples</span><span class="p">,</span>
+    <span class="n">y_train</span><span class="o">=</span><span class="n">responses</span><span class="p">,</span>
+    <span class="n">iteration</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">init_config</span><span class="o">=</span><span class="n">init_config</span><span class="p">,</span>
+    <span class="n">var_config</span><span class="o">=</span><span class="n">var_config</span><span class="p">,</span>
+    <span class="n">sampler_config</span><span class="o">=</span><span class="n">sampler_config</span><span class="p">,</span>
+    <span class="n">delete_model_raw_data</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># delete temporary folder after training</span>
+<span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Epoch 1/2000, Train loss: 1.543e+01, Val loss: 1.787e+01
+Epoch 50/2000, Train loss: 1.452e+01, Val loss: 1.635e+01
+Epoch 100/2000, Train loss: 1.311e+01, Val loss: 1.396e+01
+Epoch 150/2000, Train loss: 1.171e+01, Val loss: 1.245e+01
+Epoch 200/2000, Train loss: 1.089e+01, Val loss: 1.089e+01
+Epoch 250/2000, Train loss: 1.030e+01, Val loss: 1.020e+01
+Epoch 300/2000, Train loss: 1.002e+01, Val loss: 9.685e+00
+Epoch 350/2000, Train loss: 9.517e+00, Val loss: 9.483e+00
+Epoch 400/2000, Train loss: 9.104e+00, Val loss: 8.895e+00
+Epoch 450/2000, Train loss: 8.746e+00, Val loss: 8.573e+00
+Epoch 500/2000, Train loss: 8.419e+00, Val loss: 8.083e+00
+Epoch 550/2000, Train loss: 8.035e+00, Val loss: 7.873e+00
+Epoch 600/2000, Train loss: 7.752e+00, Val loss: 7.582e+00
+Epoch 650/2000, Train loss: 7.406e+00, Val loss: 7.190e+00
+Epoch 700/2000, Train loss: 7.168e+00, Val loss: 7.017e+00
+Epoch 750/2000, Train loss: 6.924e+00, Val loss: 6.709e+00
+Epoch 800/2000, Train loss: 6.680e+00, Val loss: 6.529e+00
+Epoch 850/2000, Train loss: 6.406e+00, Val loss: 6.386e+00
+Epoch 900/2000, Train loss: 5.973e+00, Val loss: 5.856e+00
+Epoch 950/2000, Train loss: 5.507e+00, Val loss: 5.525e+00
+Epoch 1000/2000, Train loss: 5.055e+00, Val loss: 4.974e+00
+Epoch 1050/2000, Train loss: 4.361e+00, Val loss: 4.381e+00
+Epoch 1100/2000, Train loss: 3.932e+00, Val loss: 4.157e+00
+Epoch 1150/2000, Train loss: 3.468e+00, Val loss: 3.429e+00
+Epoch 1200/2000, Train loss: 3.040e+00, Val loss: 3.658e+00
+Epoch 1250/2000, Train loss: 2.751e+00, Val loss: 3.081e+00
+Epoch 1300/2000, Train loss: 2.551e+00, Val loss: 3.085e+00
+Epoch 1350/2000, Train loss: 2.388e+00, Val loss: 3.245e+00
+Epoch 1400/2000, Train loss: 2.293e+00, Val loss: 3.084e+00
+Epoch 1450/2000, Train loss: 2.245e+00, Val loss: 3.029e+00
+Epoch 1500/2000, Train loss: 2.080e+00, Val loss: 2.974e+00
+Epoch 1550/2000, Train loss: 2.040e+00, Val loss: 3.050e+00
+Epoch 1600/2000, Train loss: 2.004e+00, Val loss: 2.950e+00
+Epoch 1650/2000, Train loss: 1.996e+00, Val loss: 3.115e+00
+Epoch 1700/2000, Train loss: 1.949e+00, Val loss: 3.085e+00
+Epoch 1750/2000, Train loss: 1.899e+00, Val loss: 3.241e+00
+Epoch 1800/2000, Train loss: 1.915e+00, Val loss: 2.983e+00
+Epoch 1850/2000, Train loss: 1.872e+00, Val loss: 3.051e+00
+Epoch 1900/2000, Train loss: 1.917e+00, Val loss: 3.037e+00
+Epoch 1950/2000, Train loss: 1.878e+00, Val loss: 3.307e+00
+Epoch 2000/2000, Train loss: 1.878e+00, Val loss: 3.174e+00
+=========================================================
+Step 2: Train for the variance network, iteration 1
+Epoch/Total: 0/10000, Gamma NLL: 2.495e+02, neg log prior: 2.243e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 50/10000, Gamma NLL: 1.722e+02, neg log prior: 2.241e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 100/10000, Gamma NLL: 1.723e+02, neg log prior: 2.276e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 150/10000, Gamma NLL: 1.724e+02, neg log prior: 2.302e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 200/10000, Gamma NLL: 1.726e+02, neg log prior: 2.318e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 250/10000, Gamma NLL: 1.727e+02, neg log prior: 2.330e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 300/10000, Gamma NLL: 1.728e+02, neg log prior: 2.338e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 350/10000, Gamma NLL: 1.729e+02, neg log prior: 2.344e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 400/10000, Gamma NLL: 1.729e+02, neg log prior: 2.349e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 450/10000, Gamma NLL: 1.729e+02, neg log prior: 2.352e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 500/10000, Gamma NLL: 1.729e+02, neg log prior: 2.354e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 550/10000, Gamma NLL: 1.730e+02, neg log prior: 2.356e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 600/10000, Gamma NLL: 1.730e+02, neg log prior: 2.358e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 650/10000, Gamma NLL: 1.730e+02, neg log prior: 2.359e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 700/10000, Gamma NLL: 1.730e+02, neg log prior: 2.361e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 750/10000, Gamma NLL: 1.730e+02, neg log prior: 2.362e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 800/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 850/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 900/10000, Gamma NLL: 1.730e+02, neg log prior: 2.364e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 950/10000, Gamma NLL: 1.730e+02, neg log prior: 2.364e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 1000/10000, Gamma NLL: 1.730e+02, neg log prior: 2.364e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 1050/10000, Gamma NLL: 1.730e+02, neg log prior: 2.364e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 1100/10000, Gamma NLL: 1.730e+02, neg log prior: 2.364e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 1150/10000, Gamma NLL: 1.730e+02, neg log prior: 2.364e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 1200/10000, Gamma NLL: 1.730e+02, neg log prior: 2.364e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 1250/10000, Gamma NLL: 1.730e+02, neg log prior: 2.364e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 1300/10000, Gamma NLL: 1.730e+02, neg log prior: 2.364e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 1350/10000, Gamma NLL: 1.730e+02, neg log prior: 2.364e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 1400/10000, Gamma NLL: 1.730e+02, neg log prior: 2.364e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 1450/10000, Gamma NLL: 1.730e+02, neg log prior: 2.364e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 1500/10000, Gamma NLL: 1.730e+02, neg log prior: 2.364e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 1550/10000, Gamma NLL: 1.730e+02, neg log prior: 2.364e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 1600/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 1650/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 1700/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 1750/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 1800/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 1850/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 1900/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 1950/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 2000/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 2050/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 2100/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 2150/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 2200/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 2250/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 2300/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 2350/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 2400/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 2450/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 2500/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 2550/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 2600/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 2650/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 2700/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 2750/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 2800/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 2850/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 2900/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 2950/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 3000/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 3050/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 3100/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 3150/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 3200/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 3250/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 3300/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 3350/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 3400/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 3450/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 3500/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 3550/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 3600/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 3650/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 3700/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 3750/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 3800/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 3850/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 3900/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 3950/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 4000/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 4050/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 4100/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 4150/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 4200/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 4250/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 4300/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 4350/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 4400/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 4450/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 4500/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 4550/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 4600/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 4650/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 4700/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 4750/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 4800/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 4850/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 4900/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 4950/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 5000/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 5050/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 5100/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 5150/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 5200/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 5250/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 5300/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 5350/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 5400/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 5450/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 5500/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 5550/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 5600/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 5650/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 5700/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 5750/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 5800/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 5850/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 5900/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 5950/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 6000/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 6050/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 6100/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 6150/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 6200/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 6250/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 6300/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 6350/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 6400/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 6450/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 6500/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 6550/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 6600/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 6650/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 6700/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 6750/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 6800/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 6850/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 6900/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 6950/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 7000/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 7050/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 7100/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 7150/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 7200/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 7250/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 7300/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 7350/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 7400/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 7450/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 7500/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 7550/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 7600/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 7650/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 7700/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 7750/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 7800/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 7850/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 7900/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 7950/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 8000/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 8050/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 8100/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 8150/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 8200/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 8250/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 8300/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 8350/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 8400/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 8450/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 8500/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 8550/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 8600/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 8650/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 8700/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 8750/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 8800/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 8850/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 8900/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 8950/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 9000/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 9050/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 9100/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 9150/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 9200/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 9250/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 9300/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 9350/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 9400/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 9450/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 9500/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 9550/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 9600/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 9650/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 9700/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 9750/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 9800/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 9850/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 9900/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Epoch/Total: 9950/10000, Gamma NLL: 1.730e+02, neg log prior: 2.363e+01, log marginal likelihood: 0.000e+00
+Finished training the variance network
+===========================================
+Step 3: Train for the mean network with SGMCMC
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>/home/yaga/Documents/GitHub/VeBNN/src/VeBNN/samplers/psgld.py:136: UserWarning: This overload of addcmul_ is deprecated:
+    addcmul_(Number value, Tensor tensor1, Tensor tensor2)
+Consider using one of the following signatures instead:
+    addcmul_(Tensor tensor1, Tensor tensor2, *, Number value = 1) (Triggered internally at /pytorch/torch/csrc/utils/python_arg_parser.cpp:1805.)
+  V.mul_(alpha).addcmul_(1 - alpha, d_p, d_p)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Epoch 100/5000, NLL: -1.418e+01, Neg log prior: 9.549e+03
+Epoch 200/5000, NLL: -1.909e+01, Neg log prior: 1.006e+04
+Epoch 300/5000, NLL: -1.352e+00, Neg log prior: 1.047e+04
+Epoch 400/5000, NLL: -1.949e+01, Neg log prior: 1.079e+04
+Epoch 500/5000, NLL: -2.854e+01, Neg log prior: 1.109e+04
+Epoch 600/5000, NLL: -1.554e+01, Neg log prior: 1.135e+04
+Epoch 700/5000, NLL: -2.251e+01, Neg log prior: 1.157e+04
+Epoch 800/5000, NLL: -2.002e+01, Neg log prior: 1.184e+04
+Epoch 900/5000, NLL: -2.343e+01, Neg log prior: 1.196e+04
+Epoch 1000/5000, NLL: -1.907e+01, Neg log prior: 1.214e+04
+Epoch 1100/5000, NLL: -3.168e+01, Neg log prior: 1.226e+04
+Epoch 1200/5000, NLL: -4.309e+01, Neg log prior: 1.239e+04
+Epoch 1300/5000, NLL: -3.698e+01, Neg log prior: 1.250e+04
+Epoch 1400/5000, NLL: -2.872e+01, Neg log prior: 1.264e+04
+Epoch 1500/5000, NLL: -2.932e+01, Neg log prior: 1.273e+04
+Epoch 1600/5000, NLL: -2.873e+01, Neg log prior: 1.287e+04
+Epoch 1700/5000, NLL: -3.887e+01, Neg log prior: 1.303e+04
+Epoch 1800/5000, NLL: -3.297e+01, Neg log prior: 1.308e+04
+Epoch 1900/5000, NLL: -2.259e+01, Neg log prior: 1.313e+04
+Epoch 2000/5000, NLL: -2.411e+01, Neg log prior: 1.315e+04
+Epoch 2100/5000, NLL: -3.010e+01, Neg log prior: 1.320e+04
+Epoch 2200/5000, NLL: -2.598e+01, Neg log prior: 1.333e+04
+Epoch 2300/5000, NLL: -3.904e+01, Neg log prior: 1.345e+04
+Epoch 2400/5000, NLL: -3.369e+01, Neg log prior: 1.347e+04
+Epoch 2500/5000, NLL: -3.559e+01, Neg log prior: 1.350e+04
+Epoch 2600/5000, NLL: -2.880e+01, Neg log prior: 1.356e+04
+Epoch 2700/5000, NLL: -4.023e+01, Neg log prior: 1.366e+04
+Epoch 2800/5000, NLL: -4.121e+01, Neg log prior: 1.376e+04
+Epoch 2900/5000, NLL: -3.897e+01, Neg log prior: 1.386e+04
+Epoch 3000/5000, NLL: -2.970e+01, Neg log prior: 1.394e+04
+Epoch 3100/5000, NLL: -5.003e+01, Neg log prior: 1.397e+04
+Epoch 3200/5000, NLL: -3.477e+01, Neg log prior: 1.396e+04
+Epoch 3300/5000, NLL: -3.749e+01, Neg log prior: 1.390e+04
+Epoch 3400/5000, NLL: -4.004e+01, Neg log prior: 1.399e+04
+Epoch 3500/5000, NLL: -3.845e+01, Neg log prior: 1.401e+04
+Epoch 3600/5000, NLL: -4.027e+01, Neg log prior: 1.408e+04
+Epoch 3700/5000, NLL: -3.218e+01, Neg log prior: 1.404e+04
+Epoch 3800/5000, NLL: -1.373e+01, Neg log prior: 1.411e+04
+Epoch 3900/5000, NLL: -3.326e+01, Neg log prior: 1.418e+04
+Epoch 4000/5000, NLL: -2.803e+01, Neg log prior: 1.420e+04
+Epoch 4100/5000, NLL: -2.838e+01, Neg log prior: 1.422e+04
+Epoch 4200/5000, NLL: -2.299e+01, Neg log prior: 1.424e+04
+Epoch 4300/5000, NLL: -3.956e+01, Neg log prior: 1.430e+04
+Epoch 4400/5000, NLL: -3.355e+01, Neg log prior: 1.429e+04
+Epoch 4500/5000, NLL: -3.663e+01, Neg log prior: 1.429e+04
+Epoch 4600/5000, NLL: -3.973e+01, Neg log prior: 1.429e+04
+Epoch 4700/5000, NLL: -4.080e+01, Neg log prior: 1.430e+04
+Epoch 4800/5000, NLL: -4.118e+01, Neg log prior: 1.426e+04
+Epoch 4900/5000, NLL: -3.362e+01, Neg log prior: 1.427e+04
+Epoch 5000/5000, NLL: -3.438e+01, Neg log prior: 1.430e+04
+Finished training the Bayesian mean network
+============================================
+Create model data folder to save the temporary models
+=========================================================
+Step 2: Train for the variance network, iteration 2
+Epoch/Total: 0/10000, Gamma NLL: 3.033e+02, neg log prior: 2.243e+01, log marginal likelihood: -5.067e+01
+Epoch/Total: 50/10000, Gamma NLL: 1.846e+02, neg log prior: 2.257e+01, log marginal likelihood: -3.579e+01
+Epoch/Total: 100/10000, Gamma NLL: 1.839e+02, neg log prior: 2.287e+01, log marginal likelihood: -3.436e+01
+Epoch/Total: 150/10000, Gamma NLL: 1.836e+02, neg log prior: 2.326e+01, log marginal likelihood: -3.361e+01
+Epoch/Total: 200/10000, Gamma NLL: 1.836e+02, neg log prior: 2.356e+01, log marginal likelihood: -3.318e+01
+Epoch/Total: 250/10000, Gamma NLL: 1.836e+02, neg log prior: 2.375e+01, log marginal likelihood: -3.294e+01
+Epoch/Total: 300/10000, Gamma NLL: 1.836e+02, neg log prior: 2.386e+01, log marginal likelihood: -3.281e+01
+Epoch/Total: 350/10000, Gamma NLL: 1.837e+02, neg log prior: 2.394e+01, log marginal likelihood: -3.272e+01
+Epoch/Total: 400/10000, Gamma NLL: 1.837e+02, neg log prior: 2.400e+01, log marginal likelihood: -3.266e+01
+Epoch/Total: 450/10000, Gamma NLL: 1.837e+02, neg log prior: 2.405e+01, log marginal likelihood: -3.262e+01
+Epoch/Total: 500/10000, Gamma NLL: 1.838e+02, neg log prior: 2.408e+01, log marginal likelihood: -3.258e+01
+Epoch/Total: 550/10000, Gamma NLL: 1.838e+02, neg log prior: 2.411e+01, log marginal likelihood: -3.255e+01
+Epoch/Total: 600/10000, Gamma NLL: 1.838e+02, neg log prior: 2.413e+01, log marginal likelihood: -3.253e+01
+Epoch/Total: 650/10000, Gamma NLL: 1.838e+02, neg log prior: 2.415e+01, log marginal likelihood: -3.252e+01
+Epoch/Total: 700/10000, Gamma NLL: 1.838e+02, neg log prior: 2.416e+01, log marginal likelihood: -3.251e+01
+Epoch/Total: 750/10000, Gamma NLL: 1.839e+02, neg log prior: 2.417e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 800/10000, Gamma NLL: 1.839e+02, neg log prior: 2.418e+01, log marginal likelihood: -3.249e+01
+Epoch/Total: 850/10000, Gamma NLL: 1.839e+02, neg log prior: 2.418e+01, log marginal likelihood: -3.249e+01
+Epoch/Total: 900/10000, Gamma NLL: 1.839e+02, neg log prior: 2.418e+01, log marginal likelihood: -3.248e+01
+Epoch/Total: 950/10000, Gamma NLL: 1.839e+02, neg log prior: 2.418e+01, log marginal likelihood: -3.248e+01
+Epoch/Total: 1000/10000, Gamma NLL: 1.839e+02, neg log prior: 2.418e+01, log marginal likelihood: -3.248e+01
+Epoch/Total: 1050/10000, Gamma NLL: 1.839e+02, neg log prior: 2.418e+01, log marginal likelihood: -3.248e+01
+Epoch/Total: 1100/10000, Gamma NLL: 1.839e+02, neg log prior: 2.418e+01, log marginal likelihood: -3.248e+01
+Epoch/Total: 1150/10000, Gamma NLL: 1.839e+02, neg log prior: 2.418e+01, log marginal likelihood: -3.248e+01
+Epoch/Total: 1200/10000, Gamma NLL: 1.839e+02, neg log prior: 2.418e+01, log marginal likelihood: -3.248e+01
+Epoch/Total: 1250/10000, Gamma NLL: 1.839e+02, neg log prior: 2.417e+01, log marginal likelihood: -3.248e+01
+Epoch/Total: 1300/10000, Gamma NLL: 1.839e+02, neg log prior: 2.417e+01, log marginal likelihood: -3.248e+01
+Epoch/Total: 1350/10000, Gamma NLL: 1.839e+02, neg log prior: 2.417e+01, log marginal likelihood: -3.248e+01
+Epoch/Total: 1400/10000, Gamma NLL: 1.839e+02, neg log prior: 2.417e+01, log marginal likelihood: -3.248e+01
+Epoch/Total: 1450/10000, Gamma NLL: 1.839e+02, neg log prior: 2.417e+01, log marginal likelihood: -3.248e+01
+Epoch/Total: 1500/10000, Gamma NLL: 1.839e+02, neg log prior: 2.416e+01, log marginal likelihood: -3.248e+01
+Epoch/Total: 1550/10000, Gamma NLL: 1.839e+02, neg log prior: 2.416e+01, log marginal likelihood: -3.249e+01
+Epoch/Total: 1600/10000, Gamma NLL: 1.839e+02, neg log prior: 2.416e+01, log marginal likelihood: -3.249e+01
+Epoch/Total: 1650/10000, Gamma NLL: 1.839e+02, neg log prior: 2.416e+01, log marginal likelihood: -3.249e+01
+Epoch/Total: 1700/10000, Gamma NLL: 1.839e+02, neg log prior: 2.415e+01, log marginal likelihood: -3.249e+01
+Epoch/Total: 1750/10000, Gamma NLL: 1.839e+02, neg log prior: 2.415e+01, log marginal likelihood: -3.249e+01
+Epoch/Total: 1800/10000, Gamma NLL: 1.839e+02, neg log prior: 2.415e+01, log marginal likelihood: -3.249e+01
+Epoch/Total: 1850/10000, Gamma NLL: 1.839e+02, neg log prior: 2.415e+01, log marginal likelihood: -3.249e+01
+Epoch/Total: 1900/10000, Gamma NLL: 1.839e+02, neg log prior: 2.415e+01, log marginal likelihood: -3.249e+01
+Epoch/Total: 1950/10000, Gamma NLL: 1.839e+02, neg log prior: 2.414e+01, log marginal likelihood: -3.249e+01
+Epoch/Total: 2000/10000, Gamma NLL: 1.839e+02, neg log prior: 2.414e+01, log marginal likelihood: -3.249e+01
+Epoch/Total: 2050/10000, Gamma NLL: 1.839e+02, neg log prior: 2.414e+01, log marginal likelihood: -3.249e+01
+Epoch/Total: 2100/10000, Gamma NLL: 1.839e+02, neg log prior: 2.414e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 2150/10000, Gamma NLL: 1.839e+02, neg log prior: 2.414e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 2200/10000, Gamma NLL: 1.839e+02, neg log prior: 2.414e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 2250/10000, Gamma NLL: 1.839e+02, neg log prior: 2.413e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 2300/10000, Gamma NLL: 1.839e+02, neg log prior: 2.413e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 2350/10000, Gamma NLL: 1.839e+02, neg log prior: 2.413e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 2400/10000, Gamma NLL: 1.839e+02, neg log prior: 2.413e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 2450/10000, Gamma NLL: 1.839e+02, neg log prior: 2.413e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 2500/10000, Gamma NLL: 1.839e+02, neg log prior: 2.413e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 2550/10000, Gamma NLL: 1.839e+02, neg log prior: 2.413e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 2600/10000, Gamma NLL: 1.839e+02, neg log prior: 2.413e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 2650/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 2700/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 2750/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 2800/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 2850/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 2900/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 2950/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 3000/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 3050/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 3100/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 3150/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 3200/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 3250/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 3300/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 3350/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 3400/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 3450/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 3500/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 3550/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 3600/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 3650/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 3700/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 3750/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 3800/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 3850/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 3900/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 3950/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 4000/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 4050/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 4100/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 4150/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 4200/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 4250/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 4300/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 4350/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 4400/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 4450/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 4500/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 4550/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 4600/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 4650/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 4700/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 4750/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 4800/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 4850/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 4900/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 4950/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 5000/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 5050/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 5100/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 5150/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 5200/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 5250/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 5300/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 5350/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 5400/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 5450/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 5500/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 5550/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 5600/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 5650/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 5700/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 5750/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 5800/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 5850/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 5900/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 5950/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 6000/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 6050/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 6100/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 6150/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 6200/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 6250/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 6300/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 6350/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 6400/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 6450/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 6500/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 6550/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 6600/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 6650/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 6700/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 6750/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 6800/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 6850/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 6900/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 6950/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 7000/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 7050/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 7100/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 7150/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 7200/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 7250/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 7300/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 7350/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 7400/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 7450/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 7500/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 7550/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 7600/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 7650/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 7700/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 7750/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 7800/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 7850/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 7900/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 7950/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 8000/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 8050/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 8100/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 8150/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 8200/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 8250/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 8300/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 8350/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 8400/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 8450/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 8500/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 8550/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 8600/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 8650/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 8700/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 8750/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 8800/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 8850/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 8900/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 8950/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 9000/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 9050/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 9100/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 9150/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 9200/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 9250/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 9300/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 9350/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 9400/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 9450/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 9500/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 9550/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 9600/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 9650/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 9700/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 9750/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 9800/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 9850/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 9900/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Epoch/Total: 9950/10000, Gamma NLL: 1.839e+02, neg log prior: 2.412e+01, log marginal likelihood: -3.250e+01
+Training complete. Deleting temporary PPD responses to free memory
+Finished training the variance network
+===========================================
+Step 3: Train for the mean network with SGMCMC
+Epoch 100/5000, NLL: -1.963e+01, Neg log prior: 9.516e+03
+Epoch 200/5000, NLL: -1.387e+01, Neg log prior: 9.947e+03
+Epoch 300/5000, NLL: -2.985e+01, Neg log prior: 1.032e+04
+Epoch 400/5000, NLL: -1.412e+01, Neg log prior: 1.062e+04
+Epoch 500/5000, NLL: -1.024e+01, Neg log prior: 1.094e+04
+Epoch 600/5000, NLL: -7.481e+00, Neg log prior: 1.127e+04
+Epoch 700/5000, NLL: -2.422e+01, Neg log prior: 1.151e+04
+Epoch 800/5000, NLL: -4.016e+01, Neg log prior: 1.180e+04
+Epoch 900/5000, NLL: -2.830e+01, Neg log prior: 1.201e+04
+Epoch 1000/5000, NLL: -2.158e+01, Neg log prior: 1.223e+04
+Epoch 1100/5000, NLL: -1.537e+01, Neg log prior: 1.231e+04
+Epoch 1200/5000, NLL: -3.482e+01, Neg log prior: 1.243e+04
+Epoch 1300/5000, NLL: -1.884e+01, Neg log prior: 1.258e+04
+Epoch 1400/5000, NLL: -2.447e+01, Neg log prior: 1.272e+04
+Epoch 1500/5000, NLL: -2.180e+01, Neg log prior: 1.283e+04
+Epoch 1600/5000, NLL: -1.456e+01, Neg log prior: 1.296e+04
+Epoch 1700/5000, NLL: -1.576e+01, Neg log prior: 1.304e+04
+Epoch 1800/5000, NLL: -1.969e+01, Neg log prior: 1.310e+04
+Epoch 1900/5000, NLL: -1.709e+01, Neg log prior: 1.318e+04
+Epoch 2000/5000, NLL: -2.923e+01, Neg log prior: 1.328e+04
+Epoch 2100/5000, NLL: -3.585e+01, Neg log prior: 1.340e+04
+Epoch 2200/5000, NLL: -3.402e+01, Neg log prior: 1.344e+04
+Epoch 2300/5000, NLL: -3.392e+01, Neg log prior: 1.351e+04
+Epoch 2400/5000, NLL: -2.207e+01, Neg log prior: 1.361e+04
+Epoch 2500/5000, NLL: -2.697e+01, Neg log prior: 1.374e+04
+Epoch 2600/5000, NLL: -3.148e+01, Neg log prior: 1.377e+04
+Epoch 2700/5000, NLL: -3.032e+01, Neg log prior: 1.380e+04
+Epoch 2800/5000, NLL: -3.131e+01, Neg log prior: 1.381e+04
+Epoch 2900/5000, NLL: -3.832e+01, Neg log prior: 1.379e+04
+Epoch 3000/5000, NLL: -1.785e+01, Neg log prior: 1.378e+04
+Epoch 3100/5000, NLL: -4.070e+01, Neg log prior: 1.383e+04
+Epoch 3200/5000, NLL: -3.326e+01, Neg log prior: 1.390e+04
+Epoch 3300/5000, NLL: -4.473e+01, Neg log prior: 1.394e+04
+Epoch 3400/5000, NLL: -4.076e+01, Neg log prior: 1.397e+04
+Epoch 3500/5000, NLL: -3.536e+01, Neg log prior: 1.397e+04
+Epoch 3600/5000, NLL: -4.444e+01, Neg log prior: 1.401e+04
+Epoch 3700/5000, NLL: -4.777e+01, Neg log prior: 1.404e+04
+Epoch 3800/5000, NLL: -3.814e+01, Neg log prior: 1.402e+04
+Epoch 3900/5000, NLL: -3.060e+01, Neg log prior: 1.401e+04
+Epoch 4000/5000, NLL: -3.687e+01, Neg log prior: 1.401e+04
+Epoch 4100/5000, NLL: -3.699e+01, Neg log prior: 1.406e+04
+Epoch 4200/5000, NLL: -3.534e+01, Neg log prior: 1.412e+04
+Epoch 4300/5000, NLL: -3.622e+01, Neg log prior: 1.413e+04
+Epoch 4400/5000, NLL: -3.154e+01, Neg log prior: 1.412e+04
+Epoch 4500/5000, NLL: -3.801e+01, Neg log prior: 1.407e+04
+Epoch 4600/5000, NLL: -2.947e+01, Neg log prior: 1.405e+04
+Epoch 4700/5000, NLL: -1.721e+01, Neg log prior: 1.403e+04
+Epoch 4800/5000, NLL: -2.704e+01, Neg log prior: 1.407e+04
+Epoch 4900/5000, NLL: -4.575e+01, Neg log prior: 1.416e+04
+Epoch 5000/5000, NLL: -2.975e+01, Neg log prior: 1.420e+04
+Finished training the Bayesian mean network
+============================================
+=========================================================
+Finished training the model
+Delete the model data folder to free space
+</code></pre></div>
+<h3 id="23-get-predictions-of-the-vebnn-with-mlp">2.3. Get predictions of the VeBNN with MLP<a class="headerlink" href="#23-get-predictions-of-the-vebnn-with-mlp" title="Permanent link">¤</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># get prediction for the plot_samples</span>
+<span class="n">pred_mean</span><span class="p">,</span> <span class="n">pred_epistemic_var</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">bayes_predict</span><span class="p">(</span><span class="n">plot_samples</span><span class="p">)</span>
+<span class="n">pred_aleatoric_var</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">aleatoric_variance_predict</span><span class="p">(</span><span class="n">plot_samples</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">responses</span><span class="p">,</span> <span class="s2">&quot;m+&quot;</span><span class="p">,</span>  <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Training Data&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">plot_samples</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">,</span>  <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span>
+               <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Ground Truth&quot;</span><span class="p">)</span>
+<span class="c1"># plot ground truth with 2 std</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+    <span class="n">plot_samples</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span>
+    <span class="p">(</span><span class="n">ground_truth</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mf">0.3</span><span class="o">+</span><span class="mf">0.3</span><span class="o">*</span><span class="n">plot_samples</span> <span class="p">))</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span>
+    <span class="p">(</span><span class="n">ground_truth</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mf">0.3</span><span class="o">+</span><span class="mf">0.3</span><span class="o">*</span><span class="n">plot_samples</span><span class="p">))</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span>
+    <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
+    <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;None&quot;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Ground Truth $\pm 2\sigma$&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="c1"># plot the prediction</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">plot_samples</span><span class="p">,</span> <span class="n">pred_mean</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span>
+            <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>  <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Predicted Mean&quot;</span><span class="p">)</span>
+<span class="c1"># plot the Aleatoric uncertainty</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+    <span class="n">plot_samples</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span>
+    <span class="p">(</span><span class="n">pred_mean</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">pred_aleatoric_var</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span>
+    <span class="p">(</span><span class="n">pred_mean</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">pred_aleatoric_var</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span>
+    <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;None&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Aleatoric $\pm 2\sigma$&quot;</span><span class="p">,</span>
+
+<span class="p">)</span>
+<span class="c1"># plot the Epistemic uncertainty</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+    <span class="n">plot_samples</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span>
+    <span class="p">(</span><span class="n">pred_mean</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">pred_epistemic_var</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span>
+    <span class="p">(</span><span class="n">pred_mean</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">pred_epistemic_var</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+    <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;None&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Epistemic $\pm 2\sigma$&quot;</span><span class="p">,</span>
+
+<span class="p">)</span>
+<span class="c1"># plot the ground truth of aleatoric noise</span>
+<span class="n">y_true_ale_var</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">plot_samples</span><span class="p">)</span>
+<span class="n">y_true_ale_std</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">y_true_ale_var</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+    <span class="n">plot_samples</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span>
+    <span class="p">(</span><span class="n">pred_mean</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">y_true_ale_std</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span>
+    <span class="p">(</span><span class="n">pred_mean</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">y_true_ale_std</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True Aleatoric Std (2σ)&#39;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;VeBNN Regression with MLP&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="c1"># plt.grid()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="img" src="../_data/d98fcfbec8a64a1fb7a5f18dd1922d14.png" /></p>
+<h2 id="3-vebnn-training-with-plasticity-law-discovery-dataset">3. VeBNN training with plasticity law discovery dataset<a class="headerlink" href="#3-vebnn-training-with-plasticity-law-discovery-dataset" title="Permanent link">¤</a></h2>
+<p>In this part, I will should you to use VeBNN to learn the plasticity law discovery problem. In short, the <code>MeanNet</code>, <code>GammaVarNet</code>, and <code>SGMCMCTrainer</code> remain the same, since they can handle different architectures. However, since this dataset involves sequence-to-sequence problem, we need resort to the recurrent neural network architecture. </p>
+<h3 id="31-get-training-and-testing-samples-from-plasticitylaw">3.1. Get training and testing samples from <code>PlasticityLaw</code><a class="headerlink" href="#31-get-training-and-testing-samples-from-plasticitylaw" title="Permanent link">¤</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># get the train, validate and test data</span>
+<span class="n">plasticity_dataset</span><span class="o">.</span><span class="n">get_train_val_split</span><span class="p">(</span><span class="n">num_train</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">num_val</span><span class="o">=</span><span class="mi">100</span><span class="p">,)</span>
+<span class="c1"># get the training, validate and test data</span>
+<span class="n">x_train_scaled</span><span class="p">,</span> <span class="n">x_validate_scaled</span> <span class="o">=</span> <span class="n">plasticity_dataset</span><span class="o">.</span><span class="n">strain_train</span><span class="p">,</span> <span class="n">plasticity_dataset</span><span class="o">.</span><span class="n">strain_validate</span>
+<span class="n">y_train_scaled</span><span class="p">,</span> <span class="n">y_validate_scaled</span><span class="o">=</span> <span class="n">plasticity_dataset</span><span class="o">.</span><span class="n">stress_train</span><span class="p">,</span> <span class="n">plasticity_dataset</span><span class="o">.</span><span class="n">stress_validate</span>
+<span class="c1"># get the ground truth data</span>
+<span class="n">plasticity_dataset</span><span class="o">.</span><span class="n">get_ground_truth</span><span class="p">()</span>
+<span class="c1"># evaluate the model performance on ground truth data</span>
+<span class="n">strain_gt_scaled</span> <span class="o">=</span> <span class="n">plasticity_dataset</span><span class="o">.</span><span class="n">strain_ground_truth_normalized</span>
+<span class="n">stress_gt_mean_scaled</span> <span class="o">=</span> <span class="n">plasticity_dataset</span><span class="o">.</span><span class="n">stress_ground_truth_mean_normalized</span>
+<span class="n">stress_gt_std_scaled</span> <span class="o">=</span> <span class="n">plasticity_dataset</span><span class="o">.</span><span class="n">stress_ground_truth_std_normalized</span>
+</code></pre></div>
+<h3 id="32-create-gru-architecture-with-torch">3.2. Create GRU architecture with torch<a class="headerlink" href="#32-create-gru-architecture-with-torch" title="Permanent link">¤</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># use torch to create a simple GRU model</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SimpleGRU</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">input_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                 <span class="n">hidden_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                 <span class="n">num_layers</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                 <span class="n">output_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                 <span class="n">bias</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gru</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">GRU</span><span class="p">(</span><span class="n">input_size</span><span class="o">=</span><span class="n">input_size</span><span class="p">,</span>
+                          <span class="n">hidden_size</span><span class="o">=</span><span class="n">hidden_size</span><span class="p">,</span>
+                          <span class="n">num_layers</span><span class="o">=</span><span class="n">num_layers</span><span class="p">,</span>
+                          <span class="n">bias</span><span class="o">=</span><span class="n">bias</span><span class="p">,</span>
+                          <span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="p">)</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">h2y</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">output_size</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">hx</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">out</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gru</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">hx</span><span class="p">)</span>      <span class="c1"># (B, T, hidden_size)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h2y</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>             <span class="c1"># (B, T, output_size)</span>
+        <span class="k">return</span> <span class="n">y</span>
+
+
+<span class="c1"># define the mean and variance networks</span>
+<span class="n">mean_gru</span> <span class="o">=</span> <span class="n">SimpleGRU</span><span class="p">(</span><span class="n">input_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                         <span class="n">hidden_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>
+                         <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                         <span class="n">output_size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">mean_network</span> <span class="o">=</span> <span class="n">MeanNet</span><span class="p">(</span><span class="n">net</span><span class="o">=</span><span class="n">mean_gru</span><span class="p">,</span> 
+                       <span class="n">prior_mu</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> 
+                       <span class="n">prior_sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="c1"># define the variance network</span>
+<span class="n">var_gru</span> <span class="o">=</span> <span class="n">SimpleGRU</span><span class="p">(</span><span class="n">input_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                        <span class="n">hidden_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                        <span class="n">num_layers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                        <span class="n">output_size</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">var_network</span> <span class="o">=</span> <span class="n">GammaVarNet</span><span class="p">(</span><span class="n">net</span><span class="o">=</span><span class="n">var_gru</span><span class="p">,</span>
+                            <span class="n">prior_mu</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                            <span class="n">prior_sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># print the network structures</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mean_network</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">var_network</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>MeanNet(
+  (net): SimpleGRU(
+    (gru): GRU(3, 64, num_layers=2, batch_first=True)
+    (h2y): Linear(in_features=64, out_features=3, bias=True)
+  )
+)
+GammaVarNet(
+  (net): SimpleGRU(
+    (gru): GRU(3, 4, batch_first=True)
+    (h2y): Linear(in_features=4, out_features=6, bias=True)
+  )
+)
+</code></pre></div>
+<h3 id="33-assemble-the-sgmcmctrainer-for-plasticity-law-discovery-dataset">3.3. Assemble the SGMCMCTrainer for plasticity law discovery dataset<a class="headerlink" href="#33-assemble-the-sgmcmctrainer-for-plasticity-law-discovery-dataset" title="Permanent link">¤</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># set up the configuration for the VeBNN trainer</span>
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">SGMCMCTrainer</span><span class="p">(</span><span class="n">mean_net</span><span class="o">=</span><span class="n">mean_network</span><span class="p">,</span>
+                          <span class="n">var_net</span><span class="o">=</span><span class="n">var_network</span><span class="p">,</span>
+                          <span class="n">device</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">),</span>
+                          <span class="n">job_id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># ====== configs (kept small so test is fast) ======</span>
+<span class="n">init_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;loss_name&quot;</span><span class="p">:</span> <span class="s2">&quot;MSE&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;optimizer_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Adam&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">1e-3</span><span class="p">,</span>
+    <span class="s2">&quot;weight_decay&quot;</span><span class="p">:</span> <span class="mf">1e-6</span><span class="p">,</span>
+    <span class="s2">&quot;num_epochs&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>      <span class="c1"># warm-up epochs</span>
+    <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="mi">64</span><span class="p">,</span>
+    <span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;print_iter&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+    <span class="s2">&quot;split_ratio&quot;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">var_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;optimizer_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Adam&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">1e-3</span><span class="p">,</span>
+    <span class="s2">&quot;num_epochs&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="mi">64</span><span class="p">,</span>
+    <span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;print_iter&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+    <span class="s2">&quot;early_stopping&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;early_stopping_iter&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s2">&quot;early_stopping_tol&quot;</span><span class="p">:</span> <span class="mf">1e-4</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">sampler_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;sampler&quot;</span><span class="p">:</span> <span class="s2">&quot;pSGLD&quot;</span><span class="p">,</span>   <span class="c1"># must match your VeBNN.samplers names</span>
+    <span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">1e-3</span><span class="p">,</span>
+    <span class="s2">&quot;gamma&quot;</span><span class="p">:</span> <span class="mf">0.9999</span><span class="p">,</span>
+    <span class="s2">&quot;num_epochs&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>    <span class="c1"># SGMCMC epochs</span>
+    <span class="s2">&quot;mix_epochs&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>     <span class="c1"># thinning interval</span>
+    <span class="s2">&quot;burn_in_epochs&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="mi">64</span><span class="p">,</span>
+    <span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;print_iter&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># ====== run cooperative training ======</span>
+<span class="c1"># For a quick test, iteration=2 is enough to see if everything works.</span>
+<span class="n">trainer</span><span class="o">.</span><span class="n">cooperative_train</span><span class="p">(</span>
+    <span class="n">x_train</span><span class="o">=</span><span class="n">x_train_scaled</span><span class="p">,</span>
+    <span class="n">y_train</span><span class="o">=</span><span class="n">y_train_scaled</span><span class="p">,</span>
+    <span class="n">iteration</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">init_config</span><span class="o">=</span><span class="n">init_config</span><span class="p">,</span>
+    <span class="n">var_config</span><span class="o">=</span><span class="n">var_config</span><span class="p">,</span>
+    <span class="n">sampler_config</span><span class="o">=</span><span class="n">sampler_config</span><span class="p">,</span>
+    <span class="n">delete_model_raw_data</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># delete temporary folder after training</span>
+<span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>/home/yaga/miniconda3/envs/vebnn_env/lib/python3.12/site-packages/torch/nn/modules/rnn.py:1394: UserWarning: RNN module weights are not part of single contiguous chunk of memory. This means they need to be compacted at every call, possibly greatly increasing memory usage. To compact weights again call flatten_parameters(). (Triggered internally at /pytorch/aten/src/ATen/native/cudnn/RNN.cpp:1479.)
+  result = _VF.gru(
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Epoch 1/100, Train loss: 1.012e+00, Val loss: 1.011e+00
+Epoch 50/100, Train loss: 1.370e-01, Val loss: 1.263e-01
+Epoch 100/100, Train loss: 6.914e-02, Val loss: 6.242e-02
+=========================================================
+Step 2: Train for the variance network, iteration 1
+Epoch/Total: 0/100, Gamma NLL: -1.146e+04, neg log prior: 1.317e+02, log marginal likelihood: 0.000e+00
+Epoch/Total: 50/100, Gamma NLL: -2.229e+04, neg log prior: 1.318e+02, log marginal likelihood: 0.000e+00
+Finished training the variance network
+===========================================
+Step 3: Train for the mean network with SGMCMC
+Epoch 100/200, NLL: -8.440e+04, Neg log prior: 7.431e+04
+Epoch 200/200, NLL: -8.434e+04, Neg log prior: 7.622e+04
+Finished training the Bayesian mean network
+============================================
+Create model data folder to save the temporary models
+=========================================================
+Finished training the model
+Delete the model data folder to free space
+</code></pre></div>
+<h3 id="34-get-predictions-for-the-plasticity-law-dataset">3.4. Get predictions for the plasticity law dataset<a class="headerlink" href="#34-get-predictions-for-the-plasticity-law-dataset" title="Permanent link">¤</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># get the prediction from the bnn</span>
+<span class="n">pred</span><span class="p">,</span> <span class="n">var_epistemic</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">bayes_predict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">strain_gt_scaled</span><span class="p">)</span>
+<span class="c1"># for aleatoric uncertainty</span>
+<span class="n">var_aleatoric</span><span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">aleatoric_variance_predict</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">strain_gt_scaled</span><span class="p">)</span>
+<span class="c1"># convert to cpu </span>
+<span class="n">pred</span> <span class="o">=</span> <span class="n">pred</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+<span class="n">var_epistemic</span> <span class="o">=</span> <span class="n">var_epistemic</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+<span class="n">var_aleatoric</span> <span class="o">=</span> <span class="n">var_aleatoric</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+<span class="c1"># set the </span>
+<span class="c1"># scale the prediction back</span>
+<span class="n">pred</span> <span class="o">=</span> <span class="n">pred</span> <span class="o">*</span> <span class="n">plasticity_dataset</span><span class="o">.</span><span class="n">stress_std</span> <span class="o">+</span> <span class="n">plasticity_dataset</span><span class="o">.</span><span class="n">stress_mean</span>
+<span class="n">var_epistemic</span> <span class="o">=</span> <span class="n">var_epistemic</span> <span class="o">*</span> <span class="n">plasticity_dataset</span><span class="o">.</span><span class="n">stress_std</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="n">var_aleatoric</span> <span class="o">=</span> <span class="n">var_aleatoric</span> <span class="o">*</span> <span class="n">plasticity_dataset</span><span class="o">.</span><span class="n">stress_std</span> <span class="o">**</span> <span class="mi">2</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">formatter</span> <span class="o">=</span> <span class="n">ScalarFormatter</span><span class="p">(</span><span class="n">useMathText</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">formatter</span><span class="o">.</span><span class="n">set_scientific</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">formatter</span><span class="o">.</span><span class="n">set_powerlimits</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">prediction_plot</span><span class="p">(</span>
+    <span class="n">x_test</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+    <span class="n">y_test</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+    <span class="n">y_pred_mean</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+    <span class="n">y_pred_var</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+    <span class="n">y_pred_aleatoric</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+    <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">fig_name</span><span class="o">=</span><span class="s2">&quot;rnn_prediction&quot;</span><span class="p">,</span>
+    <span class="n">save_fig</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">y_test_var</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+    <span class="n">strain</span> <span class="o">=</span> <span class="n">x_test</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">stress</span> <span class="o">=</span> <span class="n">y_test</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">y_pred_mean</span> <span class="o">=</span> <span class="n">y_pred_mean</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">y_pred_var</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">y_pred_var</span> <span class="o">=</span> <span class="n">y_pred_var</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">y_test_var</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">y_test_var</span> <span class="o">=</span> <span class="n">y_test_var</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">y_pred_aleatoric</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">y_pred_aleatoric</span> <span class="o">=</span> <span class="n">y_pred_aleatoric</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">strain</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#0077BB&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$E_</span><span class="si">{11}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">strain</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#0077BB&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$E_</span><span class="si">{12}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">strain</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#0077BB&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$E_</span><span class="si">{22}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+
+    <span class="c1"># plot the stress</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">stress</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#0077BB&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">y_test_var</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+            <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stress</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">])),</span>
+            <span class="n">y1</span><span class="o">=</span><span class="n">y_test</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">y_test_var</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]),</span>
+            <span class="n">y2</span><span class="o">=</span><span class="n">y_test</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">y_test_var</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]),</span>
+            <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#0077BB&quot;</span><span class="p">,</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y_pred_mean</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#CC3311&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">y_pred_var</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+            <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stress</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">])),</span>
+            <span class="n">y1</span><span class="o">=</span><span class="n">y_pred_mean</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">y_pred_var</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]),</span>
+            <span class="n">y2</span><span class="o">=</span><span class="n">y_pred_mean</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">y_pred_var</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]),</span>
+            <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#EE7733&quot;</span><span class="p">,</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="c1"># plot the aleatoric uncertainty</span>
+    <span class="k">if</span> <span class="n">y_pred_aleatoric</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+            <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stress</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">])),</span>
+            <span class="n">y1</span><span class="o">=</span><span class="n">y_pred_mean</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">y_pred_aleatoric</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]),</span>
+            <span class="n">y2</span><span class="o">=</span><span class="n">y_pred_mean</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">y_pred_aleatoric</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]),</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span>
+            <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Time step&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\sigma_</span><span class="si">{11}</span><span class="s2">$ (MPa)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">stress</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="s2">&quot;-&quot;</span><span class="p">,</span>
+        <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#0077BB&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">y_test_var</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+            <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stress</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">])),</span>
+            <span class="n">y1</span><span class="o">=</span><span class="n">y_test</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">y_test_var</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]),</span>
+            <span class="n">y2</span><span class="o">=</span><span class="n">y_test</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">y_test_var</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]),</span>
+            <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#0077BB&quot;</span><span class="p">,</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">y_pred_mean</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="s2">&quot;-&quot;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#CC3311&quot;</span><span class="p">,</span>
+        <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">y_pred_var</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+            <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stress</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">])),</span>
+            <span class="n">y1</span><span class="o">=</span><span class="n">y_pred_mean</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">y_pred_var</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]),</span>
+            <span class="n">y2</span><span class="o">=</span><span class="n">y_pred_mean</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">y_pred_var</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]),</span>
+            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#EE7733&quot;</span><span class="p">,</span>
+            <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="c1"># plot the aleatoric uncertainty</span>
+    <span class="k">if</span> <span class="n">y_pred_aleatoric</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+            <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stress</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">])),</span>
+            <span class="n">y1</span><span class="o">=</span><span class="n">y_pred_mean</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">y_pred_aleatoric</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]),</span>
+            <span class="n">y2</span><span class="o">=</span><span class="n">y_pred_mean</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">y_pred_aleatoric</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]),</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span>
+            <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\sigma_</span><span class="si">{12}</span><span class="s2">$ (MPa)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Time step&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">y_test_var</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+            <span class="n">stress</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#0077BB&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Ground Truth Mean&quot;</span>
+        <span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+            <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stress</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">])),</span>
+            <span class="n">y1</span><span class="o">=</span><span class="n">y_test</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">y_test_var</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]),</span>
+            <span class="n">y2</span><span class="o">=</span><span class="n">y_test</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">y_test_var</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]),</span>
+            <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#0077BB&quot;</span><span class="p">,</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Ground Truth 95% CI&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+            <span class="n">stress</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#0077BB&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Test Data&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">y_pred_mean</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#CC3311&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Pred. Mean&quot;</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">y_pred_var</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+            <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stress</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">])),</span>
+            <span class="n">y1</span><span class="o">=</span><span class="n">y_pred_mean</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">y_pred_var</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]),</span>
+            <span class="n">y2</span><span class="o">=</span><span class="n">y_pred_mean</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">y_pred_var</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]),</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#EE7733&quot;</span><span class="p">,</span>
+            <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Pred. 95% CI Total&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="c1"># plot the aleatoric uncertainty</span>
+    <span class="k">if</span> <span class="n">y_pred_aleatoric</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+            <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stress</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">])),</span>
+            <span class="n">y1</span><span class="o">=</span><span class="n">y_pred_mean</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">y_pred_aleatoric</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]),</span>
+            <span class="n">y2</span><span class="o">=</span><span class="n">y_pred_mean</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">y_pred_aleatoric</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]),</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span>
+            <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Pred. 95% CI Aleatoric&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Time step&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\sigma_</span><span class="si">{22}</span><span class="s2">$ (MPa)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+
+    <span class="c1"># set the line width  and font size for the axises</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;major&quot;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="c1"># set linewidth</span>
+            <span class="k">for</span> <span class="n">axis</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;top&quot;</span><span class="p">,</span> <span class="s2">&quot;bottom&quot;</span><span class="p">,</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">]:</span>
+                <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+    <span class="c1"># set the spaces for subplots</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.32</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">save_fig</span><span class="p">:</span>
+        <span class="c1"># plt.savefig(f&quot;{fig_name}.pdf&quot;, dpi=300, bbox_inches=&quot;tight&quot;)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fig_name</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">prediction_plot</span><span class="p">(</span>
+        <span class="n">x_test</span><span class="o">=</span><span class="n">plasticity_dataset</span><span class="o">.</span><span class="n">strain_ground_truth</span><span class="p">,</span>
+        <span class="n">y_test</span><span class="o">=</span><span class="n">plasticity_dataset</span><span class="o">.</span><span class="n">stress_ground_truth_mean</span><span class="p">,</span>
+        <span class="n">y_pred_mean</span><span class="o">=</span><span class="n">pred</span><span class="p">,</span>
+        <span class="n">y_pred_var</span><span class="o">=</span><span class="n">var_epistemic</span><span class="p">,</span>
+        <span class="n">y_pred_aleatoric</span><span class="o">=</span><span class="n">var_aleatoric</span><span class="p">,</span>
+        <span class="n">index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">save_fig</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">y_test_var</span><span class="o">=</span><span class="n">plasticity_dataset</span><span class="o">.</span><span class="n">stress_ground_truth_std</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div>
+<p><img alt="img" src="../_data/8dd67acedb8e4192b13d88bdf75bf4f3.png" /></p>
+<p><strong>have fun!</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "toc.integrate", "header.autohide", "content.code.copy"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../_static/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
