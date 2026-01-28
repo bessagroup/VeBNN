@@ -6,9 +6,9 @@
 
 # What is VeBNN?
 
-| [**GitHub**](https://github.com/JiaxiangYi96/VeBNN)
+| [**GitHub**](https://github.com/bessagroup/VeBNN)
 | [**arXiv**](https://arxiv.org/abs/2505.02743) |
-[**Documentation**](http://127.0.0.1:8000/en/latest)|
+[**Documentation**](https://bessagroup.github.io/VeBNN/)|
 
 ## Summary
 
@@ -68,7 +68,7 @@ pip install -r requirements.txt
 
 ## Community Support
 
-If you find any **issues, bugs or problems** with this package, please use the [GitHub issue tracker](https://github.com/JiaxiangYi96/VeBNN/issues) to report them.
+If you find any **issues, bugs or problems** with this package, please use the [GitHub issue tracker](https://github.com/bessagroup/VeBNN/issues) to report them.
 
 ## License
 
@@ -76,5 +76,5 @@ Copyright (c) 2025, Jiaxiang Yi
 
 All rights reserved.
 
-This project is licensed under the BSD 3-Clause License. See [LICENSE](https://github.com/JiaxiangYi96/VeBNN/blob/main/LICENSE) for the full license text.
+This project is licensed under the BSD 3-Clause License. See [LICENSE](https://github.com/bessagroup/VeBNN/blob/main/LICENSE) for the full license text.
 

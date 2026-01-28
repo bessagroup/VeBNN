@@ -30,7 +30,7 @@ theme:
 site_name: VeBNN
 site_description: A repo for Variance estimation Bayesian Neural Networks
 site_author: Jiaxiang Yi
-site_url: https://VeBNN.readthedocs.io/en/latest/
+site_url: https://bessagroup.github.io/VeBNN/
 
 repo_url: https://github.com/bessagroup/VeBNN
 repo_name: bessagroup/VeBNN
@@ -38,7 +38,7 @@ edit_uri: ""
 
 strict: true  # Don't allow warnings during the build process
 
-extra_javascript: 
+extra_javascript:
     # The below two make MathJax work, see https://squidfunk.github.io/mkdocs-material/reference/mathjax/
     - _static/mathjax.js
     - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
