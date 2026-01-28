@@ -12,7 +12,7 @@
         <meta name="author" content="Jiaxiang Yi">
       
       
-        <link rel="canonical" href="https://VeBNN.readthedocs.io/en/latest/usage/">
+        <link rel="canonical" href="https://bessagroup.github.io/VeBNN/usage/">
       
       
         <link rel="prev" href="../installation/">
@@ -679,7 +679,7 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>
-<p><img alt="img" src="../_data/1ccf433befdc42f7a6b645841d578375.png" /></p>
+<p><img alt="img" src="../_data/f4ad1420eba64635abd146ef3715753b.png" /></p>
 <p>To this end, one can develop their own numerical case as following the same format. </p>
 <h3 id="12-plasticity-law-discovery-dataset">1.2. Plasticity Law Discovery Dataset<a class="headerlink" href="#12-plasticity-law-discovery-dataset" title="Permanent link">¤</a></h3>
 <p>The fundamental mechanical law of materials is called a <strong>constitutive law</strong>. It relates average material <strong>deformations</strong> to average material <strong>stresses</strong> at any point in a structure. Constitutive laws can model different physics behaviors, such as <strong>elasticity</strong>, <strong>hyperelasticity</strong>, <strong>plasticity</strong>, and <strong>damage</strong>. In this dataset, we focus on generating datasets for <strong>plastically deforming composite materials</strong>, following prior work about Cooperative Data-Driven Modeling (<a href="https://www.sciencedirect.com/science/article/abs/pii/S004578252300556X">CDDM</a>) . Without loss of generality, the constitutive law of such <strong>path-dependent materials</strong> can be written as:</p>
@@ -759,11 +759,11 @@
 <div class="highlight"><pre><span></span><code><span class="c1"># visualization of the training data for specific index</span>
 <span class="n">plasticity_dataset</span><span class="o">.</span><span class="n">plot_training_data</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </code></pre></div>
-<p><img alt="img" src="../_data/0ee2ec94809f49c1889fa93bf9e13d37.png" /></p>
+<p><img alt="img" src="../_data/9ecde81dc0a3496d8cb6023e18b117a3.png" /></p>
 <div class="highlight"><pre><span></span><code><span class="c1"># visualize the test data with ground truth</span>
 <span class="n">plasticity_dataset</span><span class="o">.</span><span class="n">plot_test_data</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div>
-<p><img alt="img" src="../_data/46417201b53846dc9634fb6c9197997d.png" /></p>
+<p><img alt="img" src="../_data/8f8709d08da249f0acc09931f2659da5.png" /></p>
 <h2 id="2-vebnn-training-with-one-dimensional-illustrative-example">2. VeBNN training with one-dimensional illustrative example<a class="headerlink" href="#2-vebnn-training-with-one-dimensional-illustrative-example" title="Permanent link">¤</a></h2>
 <p>When you have tabular data, then you have to resort to Multi-layer perceptron or Feed-forward neural network to handle such problems. For example, in the [illustrative example] cell, we created a dataset with input <code>samples</code> and noisy observation <code>responses</code>. In order to handle such problem, we first need to define the neural architecture, and the assemble the <code>MeanNet</code> and <code>GammaVarNet</code>. With setting up for <code>MeanNet</code> and <code>GammaVarNet</code>, we can train the <code>VeBNN</code> method with MCMC method via <code>SGMCMCTrainer</code>. </p>
 <h3 id="21-create-the-mlp-architecture-and-assemble-it-to-mean-and-variance-neural-networks">2.1. Create the MLP architecture and assemble it to mean and variance neural networks.<a class="headerlink" href="#21-create-the-mlp-architecture-and-assemble-it-to-mean-and-variance-neural-networks" title="Permanent link">¤</a></h3>
@@ -1508,7 +1508,7 @@ Delete the model data folder to free space
 <span class="c1"># plt.grid()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>
-<p><img alt="img" src="../_data/85eb1149df9a477ab3226956232ee43b.png" /></p>
+<p><img alt="img" src="../_data/cbcfc53eb45b4beba09cd5a979140104.png" /></p>
 <h2 id="3-vebnn-training-with-plasticity-law-discovery-dataset">3. VeBNN training with plasticity law discovery dataset<a class="headerlink" href="#3-vebnn-training-with-plasticity-law-discovery-dataset" title="Permanent link">¤</a></h2>
 <p>In this part, I will should you to use VeBNN to learn the plasticity law discovery problem. In short, the <code>MeanNet</code>, <code>GammaVarNet</code>, and <code>SGMCMCTrainer</code> remain the same, since they can handle different architectures. However, since this dataset involves sequence-to-sequence problem, we need resort to the recurrent neural network architecture. </p>
 <h3 id="31-get-training-and-testing-samples-from-plasticitylaw">3.1. Get training and testing samples from <code>PlasticityLaw</code><a class="headerlink" href="#31-get-training-and-testing-samples-from-plasticitylaw" title="Permanent link">¤</a></h3>
@@ -1874,7 +1874,7 @@ Delete the model data folder to free space
         <span class="n">y_test_var</span><span class="o">=</span><span class="n">plasticity_dataset</span><span class="o">.</span><span class="n">stress_ground_truth_std</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div>
-<p><img alt="img" src="../_data/5ba2b30aa30649a7ba9e780404899b0e.png" /></p>
+<p><img alt="img" src="../_data/2dd3d27b37734966bec566c8e5d2a26f.png" /></p>
 <p><strong>have fun!</strong></p>
 
 
